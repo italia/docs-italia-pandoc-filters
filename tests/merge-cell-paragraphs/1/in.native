@@ -1,5 +1,0 @@
-[Table [] [AlignDefault] [0.0]
- [[]
- ,[]]
- [[[Para [Str "first", Space, Str "line"]
-   ,Para [Str "second",Space,Str "line"]]]]]
