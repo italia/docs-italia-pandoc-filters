@@ -1,9 +1,5 @@
-[Table [] [AlignDefault] [0.0]
- [[]]
- [[[Para [Strong [Str "Esempio.",Space,Str "File",Space,Str "publisher_settings.yml",Space,Str "tratto",Space,Str "dallo",Space,Str "Starter",Space,Str "kit"]]
-   ,CodeBlock ("",[],[("font","Courier New")]) "publisher:"
-   ,CodeBlock ("",[],[("font","Courier New")]) "name: Ministero della Documentazione Pubblica"
-   ,CodeBlock ("",[],[("font","Courier New")]) "short-name: Min. Doc. Pub."
-   ,CodeBlock ("",[],[("font","Courier New")]) "description: |"
-   ,CodeBlock ("",[],[("font","Courier New")]) "Lorem ipsum dolor sit amet, "
-   ]]]]
+[BulletList
+ [[CodeBlock ("",[],[]) "first"
+  ,CodeBlock ("",[],[]) "second"
+ ]]
+]
