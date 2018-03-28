@@ -2,6 +2,7 @@
 import Text.Pandoc.JSON
 import qualified Data.ByteString.Lazy as BL
 import Text.Pandoc.Definition
+import Text.Pandoc.Walk
 import Data.Aeson
 import Data.List
 import Data.Monoid ((<>))
@@ -15,7 +16,7 @@ mergeCodes (x:rest) = x:mergeCodes rest
 mergeCodes [] = []
 
 f :: Pandoc -> Pandoc
-f (Pandoc m b) = Pandoc m (mergeCodes b)
+f = walk mergeCodes
 
 main = BL.getContents >>=
     BL.putStr . encode . f . either error id .
