@@ -84,8 +84,9 @@ tocTree depth paths = RawBlock "rst" $
 -- >>> getPath (Header 2 ("", [], []) [Str "my section accénted"])
 -- "index/my-section-accénted.rst"
 getPath :: Block -> String
-getPath (Header _  _ i) = "index/" <> (foldl j "" $ walk simplify' i) <> ".rst"
+getPath (Header _  _ i) = limit $ "index/" <> (foldl j "" $ walk simplify' i) <> ".rst"
   where j s1 (Str s2) = s1 <> s2
+        limit = take 20 -- file names cannot be too long
 
 simplify' = concatMap simplify
 
