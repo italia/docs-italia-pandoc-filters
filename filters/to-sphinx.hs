@@ -62,16 +62,6 @@ multiBreak p l@(h:t)
   where (t1, t2) = break p t
         (l1, l2) = break p l
 
--- | get elements in between two predicates
--- >>> between (=='a') (=='d') "abcd abcd"
--- "bc"
--- >>> between (=='a') (=='b') "abcd abcd"
--- ""
--- >>> between (=='a') (=='a') "abcd abcd"
--- "bcd "
-between p1 p2 s = fst $ break p2 rest
-  where (doNotSatisfy, (satisfy:rest)) = break p1 s
-
 {-
 
 .. toctree::
