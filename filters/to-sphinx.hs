@@ -42,14 +42,21 @@ writeSection s =
 
 makeIndex :: [Block] -> [Block]
 makeIndex b = getIntro b <> [tableOfContents]
-  where tableOfContents = tocTree 2 $ map getPath $ filter (isHeading 2) b
+  where tableOfContents = tocTree 2 $ map getPath $ filter (isHeading l) b
+        l = level b
 
 getIntro = join . fst . breakSections
 
 breakSections body = (intro, sections)
   where intro = take 1 broken
         sections = drop 1 broken
-        broken = multiBreak (isHeading 2) body
+        broken = multiBreak (isHeading (level body)) body
+
+-- | if we have only one header 1 break by header 2 and so on
+level :: [Block] -> Int
+level body = head $ filter hasSeveral [1, 2, 3, 4, 5]
+  where hasSeveral l = (length $ query (collectHeading l) body) > 1
+        collectHeading l i = if isHeading l i then [i] else []
 
 -- | Multiple version of break, like a `split` that keeps the delimiter
 -- >>> multiBreak (==' ') "bla bla bla b"
