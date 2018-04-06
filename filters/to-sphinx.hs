@@ -10,9 +10,9 @@ import Options.Applicative
 import Control.Monad (sequence_, join)
 import Data.Either (fromRight)
 import Data.List (intercalate)
-import System.Directory (createDirectoryIfMissing)
-
-
+import System.Directory (createDirectory, removeDirectoryRecursive, doesFileExist)
+import Control.Applicative ((<$>))
+import System.FilePath.Posix (dropExtension, addExtension)
 
 main = do
   c <- T.getContents
@@ -26,24 +26,43 @@ onBody f (Pandoc m b) = do
 
 f :: [Block] -> IO [Block]
 f d = do
-  createDirectoryIfMissing True "index"  
-  writeSections d
-  pure (makeIndex d)
+  removeDirectoryRecursive "index"  
+  createDirectory "index"  
+  s <- writeSections d
+  pure (makeIndex s d)
 
-writeSections :: [Block] -> IO ()
-writeSections = sequence_ . map writeSection . snd . breakSections
+writeSections :: [Block] -> IO [String]
+writeSections = sequence . map writeSection . snd . breakSections
 
-writeSection :: [Block] -> IO ()
+-- | like `until` but for monadic functions
+-- >>> let p a = Just (a > 3)
+-- >>> untilM p (+1) 0
+-- Just 4
+untilM :: Monad m => (a -> m Bool) -> (a -> a) -> a -> m a
+untilM p f i = do
+  r <- p i
+  if r then pure i else untilM p f (f i)
+
+availablePath :: String -> IO String
+availablePath path = do
+  (available, c) <- untilM (\ x -> not <$> (doesFileExist $ getPath x)) (\(p, c)-> (p, c+1)) (path, 1)
+  pure $ getPath (available, c)
+  where getPath (p, 1) = p
+        getPath o = addNumber o
+        addNumber (p, c) = addExtension (dropExtension p <> "-" <> show c) ".rst"
+
+writeSection :: [Block] -> IO String
 writeSection s =
   let path = getPath $ head s
   in do
     (Right contents) <- runIO (writeRST def (Pandoc nullMeta s))
-    T.writeFile path contents
+    avail <- availablePath path
+    T.writeFile avail contents
+    pure avail
 
-makeIndex :: [Block] -> [Block]
-makeIndex b = getIntro b <> [tableOfContents]
-  where tableOfContents = tocTree 2 $ map getPath $ filter (isHeading l) b
-        l = level b
+makeIndex :: [String] -> [Block] -> [Block]
+makeIndex s b = getIntro b <> [tableOfContents]
+  where tableOfContents = tocTree 2 s
 
 getIntro = join . fst . breakSections
 
