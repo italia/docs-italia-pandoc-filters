@@ -1,3 +1,10 @@
+
+Qui collezioniamo alcuni filtri che ci sono stati utili per tradurre
+documenti con Pandoc. I filtri si possono utilizzare usando l'opzione
+`--filter <nome filtro>` quando si esegue pandoc. Per maggiori
+informazioni consultate [la documentazione Pandoc sui filtri (in
+inglese)](http://pandoc.org/filters.html)
+
 ### `add-headers.hs`
 
 In alcuni casi il documento da tradurre potrebbe contenere headers in una struttura non gerarchica, che crea errori quando si cerca di convertire l'RST in HTML tramite Sphinx. Usando questo filtro vengono aggiunti gli header dove mancano, con un testo di riempimento (_header added by pandoc_)
