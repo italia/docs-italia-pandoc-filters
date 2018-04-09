@@ -10,8 +10,12 @@ import Options.Applicative
 import Control.Monad (sequence_, join)
 import Data.Either (fromRight)
 import Data.List (intercalate)
-import System.Directory (createDirectory, removeDirectoryRecursive, doesFileExist)
+import System.Directory (createDirectory,
+                         removeDirectoryRecursive,
+                         doesFileExist,
+                         doesPathExist)
 import Control.Applicative ((<$>))
+import Control.Monad (when)
 import System.FilePath.Posix (dropExtension, addExtension)
 
 main = do
@@ -26,30 +30,19 @@ onBody f (Pandoc m b) = do
 
 f :: [Block] -> IO [Block]
 f d = do
-  removeDirectoryRecursive "index"  
+  exists <- doesPathExist "index"  
+  when exists (removeDirectoryRecursive "index")
   createDirectory "index"  
   s <- writeSections d
   pure (makeIndex s d)
 
+makeIndex :: [String] -> [Block] -> [Block]
+makeIndex s b = getIntro b <> [tableOfContents]
+  where tableOfContents = tocTree 2 s
+        getIntro = join . fst . breakSections
+
 writeSections :: [Block] -> IO [String]
 writeSections = sequence . map writeSection . snd . breakSections
-
--- | like `until` but for monadic functions
--- >>> let p a = Just (a > 3)
--- >>> untilM p (+1) 0
--- Just 4
-untilM :: Monad m => (a -> m Bool) -> (a -> a) -> a -> m a
-untilM p f i = do
-  r <- p i
-  if r then pure i else untilM p f (f i)
-
-availablePath :: String -> IO String
-availablePath path = do
-  (available, c) <- untilM (\ x -> not <$> (doesFileExist $ getPath x)) (\(p, c)-> (p, c+1)) (path, 1)
-  pure $ getPath (available, c)
-  where getPath (p, 1) = p
-        getPath o = addNumber o
-        addNumber (p, c) = addExtension (dropExtension p <> "-" <> show c) ".rst"
 
 writeSection :: [Block] -> IO String
 writeSection s =
@@ -60,11 +53,22 @@ writeSection s =
     T.writeFile avail contents
     pure avail
 
-makeIndex :: [String] -> [Block] -> [Block]
-makeIndex s b = getIntro b <> [tableOfContents]
-  where tableOfContents = tocTree 2 s
+availablePath :: String -> IO String
+availablePath path = do
+  (available, c) <- untilM (\ x -> not <$> (doesFileExist $ getPath x)) (\(p, c)-> (p, c+1)) (path, 1)
+  pure $ getPath (available, c)
+  where getPath (p, 1) = p
+        getPath o = addNumber o
+        addNumber (p, c) = addExtension (dropExtension p <> "-" <> show c) ".rst"
 
-getIntro = join . fst . breakSections
+-- | like `until` but for monadic functions
+-- >>> let p a = Just (a > 3)
+-- >>> untilM p (+1) 0
+-- Just 4
+untilM :: Monad m => (a -> m Bool) -> (a -> a) -> a -> m a
+untilM p f i = do
+  r <- p i
+  if r then pure i else untilM p f (f i)
 
 breakSections body = (intro, sections)
   where intro = take 1 broken
