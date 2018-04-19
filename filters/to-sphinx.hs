@@ -3,6 +3,7 @@ module Main where
 
 import Text.Pandoc
 import Text.Pandoc.JSON
+import Text.Pandoc.Options
 import Text.Pandoc.Walk (query, walk)
 import qualified Data.Text.IO as T
 import Data.Monoid ((<>))
@@ -45,10 +46,11 @@ writeSections :: [Block] -> IO [String]
 writeSections = sequence . map writeSection . snd . breakSections
 
 writeSection :: [Block] -> IO String
+writeSection [] = pure "empty-section"
 writeSection s =
   let path = getPath $ head s
   in do
-    (Right contents) <- runIO (writeRST def (Pandoc nullMeta s))
+    (Right contents) <- runIO (writeRST rstOptions (Pandoc nullMeta s))
     avail <- availablePath path
     T.writeFile avail contents
     pure avail
@@ -75,9 +77,11 @@ breakSections body = (intro, sections)
         sections = drop 1 broken
         broken = multiBreak (isHeading (level body)) body
 
+rstOptions = def { writerWrapText = WrapNone }
+
 -- | if we have only one header 1 break by header 2 and so on
 level :: [Block] -> Int
-level body = head $ filter hasSeveral [1, 2, 3, 4, 5]
+level body = head $ filter hasSeveral [2, 3, 4, 5, 1]
   where hasSeveral l = (length $ query (collectHeading l) body) > 1
         collectHeading l i = if isHeading l i then [i] else []
 
@@ -116,6 +120,7 @@ tocTree depth paths = RawBlock "rst" $
 getPath :: Block -> String
 getPath (Header _  _ i) = "index/" <> adapt (foldl j "" $ walk simplify' i) <> ".rst"
   where j s1 (Str s2) = s1 <> s2
+        j s1 _ = s1 <> "unknown-inline"
         adapt = map replace . limit -- adapt for the file system
         limit = take 50 -- file names cannot be too long
         replace '/' = '-'
@@ -126,6 +131,7 @@ simplify' = concatMap simplify
 simplify :: Inline -> [Inline]
 simplify (Emph i) = i
 simplify (Strong i) = i
+simplify (Link _ i _) = i
 simplify Space = [Str "-"]
 simplify i = [i]
 
