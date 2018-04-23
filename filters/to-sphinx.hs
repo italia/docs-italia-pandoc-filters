@@ -79,9 +79,21 @@ breakSections body = (intro, sections)
 
 rstOptions = def { writerWrapText = WrapNone }
 
+headDefault :: a -> [a] -> a
+headDefault d = defaultMaybe d . maybeHead
+
+defaultMaybe :: a -> Maybe a -> a
+defaultMaybe d Nothing = d
+defaultMaybe _ (Just s) = s
+
+maybeHead :: [a] -> Maybe a
+maybeHead l
+  | null l = Nothing
+  | otherwise = Just (head l)
+
 -- | if we have only one header 1 break by header 2 and so on
 level :: [Block] -> Int
-level body = head $ filter hasSeveral [2, 3, 4, 5, 1]
+level body = headDefault 1 $ filter hasSeveral [2, 3, 4, 5, 1]
   where hasSeveral l = (length $ query (collectHeading l) body) > 1
         collectHeading l i = if isHeading l i then [i] else []
 
