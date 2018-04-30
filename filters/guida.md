@@ -9,17 +9,9 @@ inglese)](http://pandoc.org/filters.html)
 
 In alcuni casi il documento da tradurre potrebbe contenere headers in una struttura non gerarchica, che crea errori quando si cerca di convertire l'RST in HTML tramite Sphinx. Usando questo filtro vengono aggiunti gli header dove mancano, con un testo di riempimento (_header added by pandoc_)
 
-### `flatten.hs`
-
-Questo filtro permette di tradurre inlines annidiati, eliminando alcuni errori di sintassi RST
-
 ### `loosen-lists.hs`
 
 Fa in modo che le liste vengano scritte mantenendo uno spazio fra ogni elemento. Può essere utile quando si usa pandoc come linter per processare documenti già in formato RST
-
-### `merge-code.hs`
-
-Fonde i blocchi codice consecutivi. Alcuni documenti da tradurre potrebbero avere il codice formattato in piccoli blocchi, e con questo filtro si può ottenere un documento RST più leggibile
 
 ### `remove-divs.hs`
 
