@@ -5,13 +5,6 @@ documenti con Pandoc. I filtri si possono utilizzare usando l'opzione
 informazioni consultate [la documentazione Pandoc sui filtri (in
 inglese)](http://pandoc.org/filters.html)
 
-### `figure.hs`
-
-Permette di convertire correttamente immagini con didascalia. Si
-aspetta un paragrafo contenente solo un'immagine seguito da un
-paragrafo formattato con stile didascalia. Richiede che pandoc sia
-eseguito con l'opzione `-f docx+styles`
-
 ### `add-headers.hs`
 
 In alcuni casi il documento da tradurre potrebbe contenere headers in una struttura non gerarchica, che crea errori quando si cerca di convertire l'RST in HTML tramite Sphinx. Usando questo filtro vengono aggiunti gli header dove mancano, con un testo di riempimento (_header added by pandoc_)
