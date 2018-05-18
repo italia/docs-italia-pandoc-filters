@@ -1,0 +1,6 @@
+[Header 1 ("test-di-conversione",[],[]) []
+,Para []
+,Para [Image ("",[],[("width","2.1305555555555555in"),("height","1.2284722222222222in")]) [] ("media/image1.jpeg","Libri antichi")]
+,Div ("",[],[("custom-style","Caption")])
+ [Para [Link ("",[],[]) [Span ("",[],[("custom-style","Hyperlink")]) []] ("https://pixabay.com/en/book-read-old-literature-pages-1659717/","")]]
+,Para []]
