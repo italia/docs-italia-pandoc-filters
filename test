@@ -24,7 +24,7 @@ report e = format (fp % " " % outcome e)
   where outcome ExitSuccess = " success"
         outcome (ExitFailure _) = " failure"
 
-pandoc d = format ("pandoc in.native -o "%s%" --filter="%s) tempFile f
+pandoc d = format ("pandoc in.native -o " % s % " --filter=" % s) tempFile f
   where f = filterFromDir d
 
 echoText :: Text -> Shell ()
