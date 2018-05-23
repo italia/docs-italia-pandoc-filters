@@ -57,11 +57,13 @@ writeSection s =
 
 availablePath :: String -> IO String
 availablePath path = do
-  (available, c) <- untilM (\ x -> not <$> (doesFileExist $ getPath x)) (\(p, c)-> (p, c+1)) (path, 1)
-  pure $ getPath (available, c)
-  where getPath (p, 1) = p
-        getPath o = addNumber o
-        addNumber (p, c) = addExtension (dropExtension p <> "-" <> show c) ".rst"
+  (available, c) <- untilM isAvailable increment (path, 1)
+  pure $ render (available, c)
+  where render (p, 1) = p
+        render o = withNumber o
+        withNumber (p, c) = addExtension (dropExtension p <> "-" <> show c) ".rst"
+        isAvailable x = not <$> (doesFileExist $ render x)
+        increment (p, c) = (p, c+1)
 
 -- | like `until` but for monadic functions
 -- >>> let p a = Just (a > 3)
