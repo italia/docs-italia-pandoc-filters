@@ -1,0 +1,2 @@
+[Header 3 ("stesso-titolo",[],[]) [Str "stesso",Space,Str "titolo"]
+,RawBlock (Format "rst") ".. toctree::\n  :maxdepth: 2\n  :caption: Indice dei contenuti\n\n  index/stesso-titolo.rst\n  index/stesso-titolo-2.rst"]

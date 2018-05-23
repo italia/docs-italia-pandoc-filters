@@ -18,6 +18,12 @@ running:
 This is more than enough in order to test filters, since they can only
 affect the native format. Pandoc's options don't matter
 
+#### Testing `to-sphinx`
+
+This filter is not a pure transformation so it cannot be tested with
+our simplistic command. Some tests exist anyway in order to manually
+check the files into `index/`
+
 ##### Software License
 
 Copyright (c) the respective contributors, as shown by the AUTHORS file.
