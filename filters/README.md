@@ -26,7 +26,7 @@ Elimina gli elementi `div` dal documento, utile quando si usi pandoc per convert
 
 ### `remove-quotes.hs`
 
-A volte pandoc interpreta i blocchi di testo con indentazione come una citazione (quote). Nel caso in cui questo non fosse desiderato, applicando questo filtro eliminerà le citazioni
+A volte pandoc interpreta i blocchi di testo con indentazione come una citazione (quote). Nel caso in cui questo non fosse desiderato, applicare questo filtro eliminerà le citazioni
 
 ### `to-sphinx.hs`
 

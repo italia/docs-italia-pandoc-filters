@@ -1,6 +1,8 @@
+
 # `pandoc-filters`
 
-Our collection of Pandoc filters
+Our collection of Pandoc filters. A description of the specific
+filters (in Italian) is available at `filters/README.md`
 
 # Testing
 
