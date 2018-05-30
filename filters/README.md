@@ -23,6 +23,12 @@ casi può ridurre il lavoro richiesto per la pubblicazione. Il filtro
 converte i paragrafi in grassetto in headers di livello 2 ma si può
 modificare facilmente per usare un altro livello
 
+### `remove-page-numbers.hs`
+
+Quando si converte da PDF a DOCX a volte i numeri di pagina rimangono
+nel corpo del documento. Questo filtro rimuove i paragrafi che
+contengono solo un numero intero.
+
 ### `add-headers.hs`
 
 In alcuni casi il documento da tradurre potrebbe contenere headers in una struttura non gerarchica, che crea errori quando si cerca di convertire l'RST in HTML tramite Sphinx. Usando questo filtro vengono aggiunti gli header dove mancano, con un testo di riempimento (_header added by pandoc_)
