@@ -12,6 +12,17 @@ aspetta un paragrafo contenente solo un'immagine seguito da un
 paragrafo formattato con stile didascalia. Richiede che pandoc sia
 eseguito con l'opzione `-f docx+styles`
 
+### `bold-headers.hs`
+
+Quando si converte da PDF a DOCX a volte gli headers vengono
+interpretati semplicemente come testo in grassetto, e questo impedisce
+la generazione di un indice per la documentazione. Questo filtro
+individua i paragrafi che contengono solo testo in grassetto e li
+converte in headers. È un processo soggetto ad errore ma in alcuni
+casi può ridurre il lavoro richiesto per la pubblicazione. Il filtro
+converte i paragrafi in grassetto in headers di livello 2 ma si può
+modificare facilmente per usare un altro livello
+
 ### `add-headers.hs`
 
 In alcuni casi il documento da tradurre potrebbe contenere headers in una struttura non gerarchica, che crea errori quando si cerca di convertire l'RST in HTML tramite Sphinx. Usando questo filtro vengono aggiunti gli header dove mancano, con un testo di riempimento (_header added by pandoc_)
