@@ -1,8 +1,14 @@
 
-# `pandoc-filters`
+# Filtri Pandoc per Docs Italia
 
-Our collection of Pandoc filters. A description of the specific
-filters (in Italian) is available at `filters/README.md`
+La nostra collezione di filtri pandoc. In `filters/README.md`
+troverete una breve descrizione per ciascun filtro.
+
+### Breve introduzione ai filtri in pandoc
+
+Un filtro pandoc è un file che contiene istruzioni per modificare un documento, come una macro di Office. I filtri possono essere scritti in qualsiasi linguaggio di programmazione ed applicati a documenti scritti in un qualsiasi formato supportato da pandoc come `.rst`, `.docx`, `.odt`, `.html`, `.markdown`.
+
+Consideriamo il filtro `parole`, che applica i consigli della [Guida al linguaggio della Pubblica Amministrazione](http://guida-linguaggio-pubblica-amministrazione.readthedocs.io/it/latest/le-parole-della-pubblica-amministrazione/a.html) modificando gli acronimi in un documento. Il codice di questo filtro è 
 
 # Testing
 
@@ -19,12 +25,6 @@ running:
 
 This is more than enough in order to test filters, since they can only
 affect the native format. Pandoc's options don't matter
-
-#### Testing `to-sphinx`
-
-This filter is not a pure transformation so it cannot be tested with
-our simplistic command. Some tests exist anyway in order to manually
-check the files into `index/`
 
 ##### Software License
 
