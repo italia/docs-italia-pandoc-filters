@@ -5,12 +5,16 @@ documenti con Pandoc. I filtri si possono utilizzare usando l'opzione
 informazioni consultate [la documentazione Pandoc sui filtri (in
 inglese)](http://pandoc.org/filters.html)
 
-### `figure.hs`
+### `didascalia.hs`
 
 Permette di convertire correttamente immagini con didascalia. Si
 aspetta un paragrafo contenente solo un'immagine seguito da un
 paragrafo formattato con stile didascalia. Richiede che pandoc sia
 eseguito con l'opzione `-f docx+styles`
+
+### `quotes.hs`
+
+A volte pandoc interpreta i blocchi di testo con indentazione come una citazione (quote). Nel caso in cui questo non fosse desiderato, applicare questo filtro eliminerà le citazioni
 
 ### `bold-headers.hs`
 
@@ -40,10 +44,6 @@ Fa in modo che le liste vengano scritte mantenendo uno spazio fra ogni elemento.
 ### `remove-divs.hs`
 
 Elimina gli elementi `div` dal documento, utile quando si usi pandoc per convertire un file da HTML a RST
-
-### `remove-quotes.hs`
-
-A volte pandoc interpreta i blocchi di testo con indentazione come una citazione (quote). Nel caso in cui questo non fosse desiderato, applicare questo filtro eliminerà le citazioni
 
 ### `to-sphinx.hs`
 
