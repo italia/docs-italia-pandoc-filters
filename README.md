@@ -1,32 +1,17 @@
 
 # Filtri Pandoc per Docs Italia
 
-La nostra collezione di filtri pandoc. In `filters/README.md`
-troverete una breve descrizione per ciascun filtro.
+Questo repository contiene la nostra collezione di filtri pandoc. [Qui](filters/README.md) troverete una breve descrizione per ciascun filtro.
 
 ### Breve introduzione ai filtri in pandoc
 
 Un filtro pandoc è un file che contiene istruzioni per modificare un documento, come una macro di Office. I filtri possono essere scritti in qualsiasi linguaggio di programmazione ed applicati a documenti scritti in un qualsiasi formato supportato da pandoc come `.rst`, `.docx`, `.odt`, `.html`, `.markdown`.
 
-Consideriamo il filtro `parole`, che applica i consigli della [Guida al linguaggio della Pubblica Amministrazione](http://guida-linguaggio-pubblica-amministrazione.readthedocs.io/it/latest/le-parole-della-pubblica-amministrazione/a.html) modificando gli acronimi in un documento. Non è necessario essere un programmatore per leggere [il contenuto di questo filtro]().
+Consideriamo il filtro `parole`, che applica i consigli della [Guida al linguaggio della Pubblica Amministrazione](http://guida-linguaggio-pubblica-amministrazione.readthedocs.io/it/latest/le-parole-della-pubblica-amministrazione/a.html) modificando gli acronimi in un documento. Non è necessario essere un programmatore per capire [la logica seguita da questo filtro](filters/parole.hs), che può essere applicato ad un documento così:
 
+    $ pandoc --filtro filters/parole.hs da-filtrare.rst -o filtrato.rst
 
-
-# Testing
-
-There is a script which will run existing tests, it can easily be run:
-
-    $ ./test
-
-Every test contains an `in.native` and an `out.native` file, and it's
-contained in a directory whose name corresponds to the filter to be
-tested. The idea is that the `out.native` file can be achieved
-running:
-
-    $ pandoc in.native --filter <filter name> -o out.native
-
-This is more than enough in order to test filters, since they can only
-affect the native format. Pandoc's options don't matter
+Nel documento `filtrato.rst` gli acronimi per Anas e Anpr saranno tutti corretti. Un filtro è quindi un modo semplice e potente di modificare un documento. Inoltre un filtro è un programma molto portabile, cioè facile da scambiare con i colleghi di altri uffici.
 
 ##### Software License
 

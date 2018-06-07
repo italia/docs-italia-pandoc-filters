@@ -3,12 +3,12 @@ import Text.Pandoc.JSON
 import Text.Pandoc.Definition
 import Data.List
 
+-- parte leggibile anche da chi non è esperto di programmazione
 
 operazioni = (sostituzione ("ANPR" `e` "anpr" `diventa` "Anpr")) `e`
              (sostituzione ("ANAS" `e` "anas" `diventa` "Anas"))
 
-
--- primitive
+-- qui sotto ci sono le basi che rendono il filtro eseguibile
 
 e a b = [a, b]
 
