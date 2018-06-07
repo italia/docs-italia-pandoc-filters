@@ -8,7 +8,9 @@ troverete una breve descrizione per ciascun filtro.
 
 Un filtro pandoc è un file che contiene istruzioni per modificare un documento, come una macro di Office. I filtri possono essere scritti in qualsiasi linguaggio di programmazione ed applicati a documenti scritti in un qualsiasi formato supportato da pandoc come `.rst`, `.docx`, `.odt`, `.html`, `.markdown`.
 
-Consideriamo il filtro `parole`, che applica i consigli della [Guida al linguaggio della Pubblica Amministrazione](http://guida-linguaggio-pubblica-amministrazione.readthedocs.io/it/latest/le-parole-della-pubblica-amministrazione/a.html) modificando gli acronimi in un documento. Il codice di questo filtro è 
+Consideriamo il filtro `parole`, che applica i consigli della [Guida al linguaggio della Pubblica Amministrazione](http://guida-linguaggio-pubblica-amministrazione.readthedocs.io/it/latest/le-parole-della-pubblica-amministrazione/a.html) modificando gli acronimi in un documento. Non è necessario essere un programmatore per leggere [il contenuto di questo filtro]().
+
+
 
 # Testing
 
