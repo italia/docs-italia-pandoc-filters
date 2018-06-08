@@ -9,7 +9,7 @@ Un filtro pandoc è un file che contiene istruzioni per modificare un documento,
 
 Consideriamo il filtro `parole`, che applica i consigli della [Guida al linguaggio della Pubblica Amministrazione](http://guida-linguaggio-pubblica-amministrazione.readthedocs.io/it/latest/le-parole-della-pubblica-amministrazione/a.html) modificando gli acronimi in un documento. Non è necessario essere un programmatore per capire [la logica seguita da questo filtro](filters/parole.hs), che può essere applicato ad un documento così:
 
-    $ pandoc --filtro filters/parole.hs da-filtrare.rst -o filtrato.rst
+    $ pandoc --filter filters/parole.hs da-filtrare.rst -o filtrato.rst
 
 Nel documento `filtrato.rst` gli acronimi per Anas e Anpr saranno tutti corretti. Un filtro è quindi un modo semplice e potente di modificare un documento. Inoltre un filtro è un programma molto portabile, cioè facile da scambiare con i colleghi di altri uffici.
 
