@@ -3,7 +3,7 @@
 
 Questo repository contiene la nostra collezione di filtri pandoc. [Qui](filters/README.md) troverete una breve descrizione per ciascun filtro.
 
-### Breve introduzione ai filtri in pandoc
+## Breve introduzione ai filtri in pandoc
 
 Un filtro pandoc è un file che contiene istruzioni per modificare un documento, come una macro di Office. I filtri possono essere scritti in qualsiasi linguaggio di programmazione ed applicati a documenti scritti in un qualsiasi formato supportato da pandoc come `.rst`, `.docx`, `.odt`, `.html`, `.markdown`.
 
@@ -29,7 +29,7 @@ diventa nel caso in cui vogliate usare il comando `converti` che fa
 parte del [nostro set di comandi di
 conversione](github.com/italia/docs-italia-comandi-conversione)
 
-##### Software License
+### Software License
 
 Copyright (c) the respective contributors, as shown by the AUTHORS file.
 
