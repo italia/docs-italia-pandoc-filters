@@ -13,6 +13,22 @@ Consideriamo il filtro `filtro-acronimi`, che applica i consigli della [Guida al
 
 Nel documento `filtrato.rst` gli acronimi per Anas e Anpr saranno tutti corretti. Un filtro è quindi un modo semplice e potente di modificare un documento. Inoltre un filtro è un programma molto portabile, cioè facile da scambiare con i colleghi di altri uffici.
 
+## Installazione
+
+Alcuni dei filtri qui contenuti possono essere installati sul vostro
+sistema tramite
+[stack](https://docs.haskellstack.org/en/stable/README/#how-to-install)
+e `git` nei seguenti passi:
+
+    $ git clone https://github.com/italia/docs-italia-pandoc-filters.git
+    $ cd docs-italia-pandoc-filters
+    $ stack install
+
+Nel caso generale non è necessario installare questi filtri, ma lo
+diventa nel caso in cui vogliate usare il comando `converti` che fa
+parte del [nostro set di comandi di
+conversione](github.com/italia/docs-italia-comandi-conversione)
+
 ##### Software License
 
 Copyright (c) the respective contributors, as shown by the AUTHORS file.
