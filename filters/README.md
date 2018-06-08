@@ -20,6 +20,10 @@ A volte pandoc interpreta i blocchi di testo con indentazione come una citazione
 
 Un filtro creato per fini dimostrativi, più leggibile degli altri
 
+### `filtro-stile-liste.hs`
+
+Fa in modo che le liste vengano scritte mantenendo uno spazio fra ogni elemento. Può essere utile quando si usa pandoc come linter per processare documenti già in formato RST
+
 ### `bold-headers.hs`
 
 Quando si converte da PDF a DOCX a volte gli headers vengono
@@ -41,10 +45,6 @@ contengono solo un numero intero.
 
 In alcuni casi il documento da tradurre potrebbe contenere headers in una struttura non gerarchica, che crea errori quando si cerca di convertire l'RST in HTML tramite Sphinx. Usando questo filtro vengono aggiunti gli header dove mancano, con un testo di riempimento (_header added by pandoc_)
 
-### `loosen-lists.hs`
-
-Fa in modo che le liste vengano scritte mantenendo uno spazio fra ogni elemento. Può essere utile quando si usa pandoc come linter per processare documenti già in formato RST
-
 ### `remove-divs.hs`
 
 Elimina gli elementi `div` dal documento, utile quando si usi pandoc per convertire un file da HTML a RST
@@ -63,3 +63,4 @@ ANAS
 <p>Anas</p>
  ~ $ 
 ```
+

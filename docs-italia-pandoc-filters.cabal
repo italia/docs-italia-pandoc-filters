@@ -39,3 +39,10 @@ executable filtro-acronimi
                        pandoc-types
   hs-source-dirs:      filters
   default-language:    Haskell2010
+
+executable filtro-stile-liste
+  main-is:             filtro-stile-liste.hs
+  build-depends:       base >=4.10 && <4.11,
+                       pandoc-types
+  hs-source-dirs:      filters
+  default-language:    Haskell2010
