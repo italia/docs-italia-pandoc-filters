@@ -27,7 +27,7 @@ e `git` nei seguenti passi:
 Nel caso generale non è necessario installare questi filtri, ma lo
 diventa nel caso in cui vogliate usare il comando `converti` che fa
 parte del [nostro set di comandi di
-conversione](github.com/italia/docs-italia-comandi-conversione)
+conversione](https://github.com/italia/docs-italia-comandi-conversione)
 
 ### Software License
 
