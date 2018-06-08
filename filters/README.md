@@ -5,16 +5,20 @@ documenti con Pandoc. I filtri si possono utilizzare usando l'opzione
 informazioni consultate [la documentazione Pandoc sui filtri (in
 inglese)](http://pandoc.org/filters.html)
 
-### `didascalia.hs`
+### `filtro-didascalia.hs`
 
 Permette di convertire correttamente immagini con didascalia. Si
 aspetta un paragrafo contenente solo un'immagine seguito da un
 paragrafo formattato con stile didascalia. Richiede che pandoc sia
 eseguito con l'opzione `-f docx+styles`
 
-### `quotes.hs`
+### `filtro-quotes.hs`
 
 A volte pandoc interpreta i blocchi di testo con indentazione come una citazione (quote). Nel caso in cui questo non fosse desiderato, applicare questo filtro eliminerà le citazioni
+
+### `filtro-acronimi.hs`
+
+Un filtro creato per fini dimostrativi, più leggibile degli altri
 
 ### `bold-headers.hs`
 
@@ -49,3 +53,13 @@ Elimina gli elementi `div` dal documento, utile quando si usi pandoc per convert
 
 Produce files pronti da essere usati con Sphinx. Questo filtro è ancora in via di miglioramento, se siete interessati ad utilizzarlo per favore mettetevi in contatto col team di Docs Italia
 
+#### Nota sui nomi
+
+Alcuni di questi filtri hanno un nome che comincia con `filtro-`. Questi filtri possono essere installati nel sistema dell'utente ed eseguiti utilizzando il loro nome, per questo aggiungiamo il prefisso `filtro-` in modo da ridurre il rischio di conflitti con altri comandi già esistenti nel sistema.
+
+```
+ ~ $ pandoc -t json | filtro-acronimi | pandoc -f json
+ANAS
+<p>Anas</p>
+ ~ $ 
+```
