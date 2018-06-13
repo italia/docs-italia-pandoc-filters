@@ -49,10 +49,6 @@ In alcuni casi il documento da tradurre potrebbe contenere headers in una strutt
 
 Elimina gli elementi `div` dal documento, utile quando si usi pandoc per convertire un file da HTML a RST
 
-### `to-sphinx.hs`
-
-Produce files pronti da essere usati con Sphinx. Questo filtro è ancora in via di miglioramento, se siete interessati ad utilizzarlo per favore mettetevi in contatto col team di Docs Italia
-
 #### Nota sui nomi
 
 Alcuni di questi filtri hanno un nome che comincia con `filtro-`. Questi filtri possono essere installati nel sistema dell'utente ed eseguiti utilizzando il loro nome, per questo aggiungiamo il prefisso `filtro-` in modo da ridurre il rischio di conflitti con altri comandi già esistenti nel sistema.
