@@ -45,9 +45,12 @@ contengono solo un numero intero.
 
 In alcuni casi il documento da tradurre potrebbe contenere headers in una struttura non gerarchica, che crea errori quando si cerca di convertire l'RST in HTML tramite Sphinx. Usando questo filtro vengono aggiunti gli header dove mancano, con un testo di riempimento (_header added by pandoc_)
 
-### `remove-divs.hs`
+### `filtro-rimuovi-div.hs`
 
-Elimina gli elementi `div` dal documento, utile quando si usi pandoc per convertire un file da HTML a RST
+Elimina gli elementi `div` dal documento, utile quando si usi pandoc
+per convertire un file da HTML ad rST. Utile anche quando pandoc viene
+invocato con l'opzione `-f docx+styles` che introduce molti div
+indicanti lo stile del documento originale `.docx`
 
 #### Nota sui nomi
 
