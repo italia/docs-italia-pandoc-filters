@@ -52,6 +52,14 @@ per convertire un file da HTML ad rST. Utile anche quando pandoc viene
 invocato con l'opzione `-f docx+styles` che introduce molti div
 indicanti lo stile del documento originale `.docx`
 
+### `link-rfc`
+
+Sostituisce testi come `RFC 1234` con links allo specifico RFC, come
+per esempio https://tools.ietf.org/html/rfc1234. Vedi [la issue
+corrispondente
+](https://github.com/italia/docs-italia-comandi-conversione/issues/27)
+per maggiori informazioni
+
 #### Nota sui nomi
 
 Alcuni di questi filtri hanno un nome che comincia con `filtro-`. Questi filtri possono essere installati nel sistema dell'utente ed eseguiti utilizzando il loro nome, per questo aggiungiamo il prefisso `filtro-` in modo da ridurre il rischio di conflitti con altri comandi già esistenti nel sistema.
