@@ -1,2 +1,0 @@
-[Header 4 ("this-is-a-long-title-to-test-title-name-generation-and-clipping",[],[]) [Str "this",Space,Str "is",Space,Str "a",Space,Str "long",Space,Str "title",Space,Str "to",Space,Str "test",Space,Str "title",Space,Str "name",Space,Str "generation",Space,Str "and",Space,Str "clipping"]
-,RawBlock (Format "rst") ".. toctree::\n  :maxdepth: 2\n  :caption: Indice dei contenuti\n\n  index/this-is-a-long-title-to-test-title-name-generation.rst\n  index/this-is-a-long-title-to-test-title-name-generation-2.rst"]
