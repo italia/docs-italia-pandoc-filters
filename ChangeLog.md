@@ -1,5 +1,9 @@
 # Versioni di `docs-italia-pandoc-filters`
 
+## 0.1.2.1 -- Luglio 19, 2018
+
+* aggiorno alcune dipendenze
+
 ## 0.1.2.0 -- Giugno 14, 2018
 
 * aggiunge il `filtro-rimuovi-div`

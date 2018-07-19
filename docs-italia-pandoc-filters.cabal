@@ -2,7 +2,7 @@
 -- further documentation, see http://haskell.org/cabal/users-guide/
 
 name:                docs-italia-pandoc-filters
-version:             0.1.2.0
+version:             0.1.2.1
 synopsis:            Pandoc filters for the Docs Italia project
 -- description:         
 homepage:            https://github.com/italia/docs-italia-pandoc-filters
@@ -18,7 +18,7 @@ cabal-version:       >=1.10
 
 executable filtro-didascalia
   main-is:             filtro-didascalia.hs
-  build-depends:       base >=4.10 && <4.11,
+  build-depends:       base >=4.11 && <4.12,
                        pandoc-types,
                        bytestring,
                        aeson,
@@ -28,28 +28,28 @@ executable filtro-didascalia
 
 executable filtro-quotes
   main-is:             filtro-quotes.hs
-  build-depends:       base >=4.10 && <4.11,
+  build-depends:       base >=4.11 && <4.12,
                        pandoc-types
   hs-source-dirs:      filters
   default-language:    Haskell2010
 
 executable filtro-acronimi
   main-is:             filtro-acronimi.hs
-  build-depends:       base >=4.10 && <4.11,
+  build-depends:       base >=4.11 && <4.12,
                        pandoc-types
   hs-source-dirs:      filters
   default-language:    Haskell2010
 
 executable filtro-stile-liste
   main-is:             filtro-stile-liste.hs
-  build-depends:       base >=4.10 && <4.11,
+  build-depends:       base >=4.11 && <4.12,
                        pandoc-types
   hs-source-dirs:      filters
   default-language:    Haskell2010
 
 executable filtro-rimuovi-div
   main-is:             filtro-rimuovi-div.hs
-  build-depends:       base >=4.10 && <4.11,
+  build-depends:       base >=4.11 && <4.12,
                        pandoc-types
   hs-source-dirs:      filters
   default-language:    Haskell2010
