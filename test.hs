@@ -1,5 +1,5 @@
 #!/usr/bin/env stack
--- stack --resolver lts-12.0 script --package turtle --package pandoc --package text --package foldl --package system-filepath
+-- stack --resolver lts-12.0 script --package turtle --package pandoc --package text --package foldl --package system-filepath --profile
 {-# LANGUAGE OverloadedStrings #-}
 import Turtle
 import Control.Applicative
@@ -36,22 +36,25 @@ showWorkingDir = do
   echoText $ format fp d
 
 inDir :: Turtle.FilePath -> Shell a -> Shell a
-inDir d s = do
+inDir dir f = do
   old <- pwd
-  cd d
+  cd dir
   showWorkingDir
-  res <- s
+  res <- f
   cd old
-  showWorkingDir
   pure res
 
+collectTests = join $ ls <$> ls "tests"
+
+testAndReport dir = do
+  shell (pandoc dir) Control.Applicative.empty
+  exit <- shell ("diff out.native " <> tempFile) Control.Applicative.empty
+  pure $ report exit dir
+
 testAll = do
-  dir <- join $ ls <$> ls "tests"
-  inDir dir (
-    do
-      --echo $ fromJust $ textToLine (pandoc dir)
-      shell (pandoc dir) Control.Applicative.empty
-      exit <- shell ("diff out.native " <> tempFile) Control.Applicative.empty
-      pure $ report exit dir)
+  showWorkingDir
+  dir <- collectTests
+  -- the following gets executed multiple times for the monadic composition
+  inDir dir (testAndReport dir)
 
 main = view testAll
