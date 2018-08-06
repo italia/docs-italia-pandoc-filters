@@ -14,21 +14,38 @@ inlineToString (Str s) = s
 inlineToString Space = " "
 inlineToString _ = ""
 
-g :: Block -> Block -> Maybe Block
-g (Para [Image imageAttrs altInlines (loc, _)]) (Div (i, c, m) [Para captionInlines])
-  | Just "Caption" <- lookup "custom-style" m = Just (Para [Image imageAttrs captionInlines (loc, figAlt)])
-  where figAlt = "fig:" <> concatMap inlineToString altInlines
-g _ _ = Nothing
+-- the image could be contained in a div with some style attributes,
+-- or bare if the user styles only the following paragraph manually
+imageAttrs :: Block -> Maybe (Attr, [Inline], String)
+imageAttrs (Para [Image attr inlines (loc, _)]) = Just (attr, inlines, loc)
+imageAttrs (Div _ [b]) = imageAttrs b
+imageAttrs _ = Nothing
 
-processTwo :: (Block -> Block -> Maybe Block) -> [Block] -> [Block]
-processTwo f [] = []
-processTwo f [b] = [b]
-processTwo f (b1:b2:rest) = case (f b1 b2) of
-  Just processed -> processed : processTwo f rest -- ahead two steps
-  Nothing -> b1 : processTwo f (b2:rest) -- ahead one step
+captionContents :: Block -> Maybe [Inline]
+captionContents (Div (i, c, m) [Para inlines])
+  | Just "Caption" <- lookup "custom-style" m = Just (inlines)
+  | Just "ImageCaption" <- lookup "custom-style" m = Just (inlines)
+  | otherwise = Nothing
+captionContents _ = Nothing
+
+altFromInlines :: [Inline] -> String
+altFromInlines inlines = "fig:" <> concatMap inlineToString inlines
+
+replaceBlocks :: Block -> Block -> Maybe Block
+replaceBlocks imageCandidate captionCandidate = do
+  (attr, altInlines, loc) <- imageAttrs imageCandidate
+  capInlines <- captionContents captionCandidate
+  pure (Para [Image attr capInlines (loc, altFromInlines altInlines)])
+
+replaceTwo :: (Block -> Block -> Maybe Block) -> [Block] -> [Block]
+replaceTwo f [] = []
+replaceTwo f [b] = [b]
+replaceTwo f (b1:b2:rest) = case (f b1 b2) of
+  Just replaced -> replaced : replaceTwo f rest -- ahead two steps
+  Nothing -> b1 : replaceTwo f (b2:rest)        -- ahead one step
 
 f :: Pandoc -> Pandoc
-f (Pandoc m b) = Pandoc m (processTwo g b)
+f (Pandoc m b) = Pandoc m (replaceTwo replaceBlocks b)
 
 main = BL.getContents >>=
     BL.putStr . encode . f . either error id .
