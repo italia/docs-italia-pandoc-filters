@@ -1,0 +1,3 @@
+[Div ("",[],[("custom-style","FirstParagraph")])
+ [Para [Str "La",Space,Str "formattazione",Space,Str "centrata",Space,Str "non",Space,Str "viene",Space,Str "resa",Space,Str "correttamente",Space,Str "in",Space,Str "DOCX",Space,Str "e",Space,Str "ODT."]]
+,Para [Image ("",[],[("width","2.0840299650043743in"),("height","2.2784689413823274in")]) [Str "Didascalia",Space,Str "della",Space,Str "figura,",Space,Str "separata",Space,Str "dalle",Space,Str "opzioni",Space,Str "precedenti",Space,Str "da",Space,Str "una",Space,Str "riga",Space,Str "vuota."] ("media/rId45.jpg","fig:Testo alternativo. Luna")]]

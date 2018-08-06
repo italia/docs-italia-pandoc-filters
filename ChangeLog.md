@@ -1,4 +1,10 @@
+
 # Versioni di `docs-italia-pandoc-filters`
+
+## 0.1.2.2 -- Agosto 6, 2018
+
+* miglioro il filtro didascalia tenendo conto di
+  https://github.com/italia/docs-italia-comandi-conversione/issues/61
 
 ## 0.1.2.1 -- Luglio 19, 2018
 

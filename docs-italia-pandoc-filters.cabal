@@ -2,7 +2,7 @@
 -- further documentation, see http://haskell.org/cabal/users-guide/
 
 name:                docs-italia-pandoc-filters
-version:             0.1.2.1
+version:             0.1.2.2
 synopsis:            Pandoc filters for the Docs Italia project
 -- description:         
 homepage:            https://github.com/italia/docs-italia-pandoc-filters
@@ -16,8 +16,10 @@ build-type:          Simple
 extra-source-files:  ChangeLog.md, README.md
 cabal-version:       >=1.10
 
-executable test
-  main-is:             ../test.hs
+test-suite test
+  type: exitcode-stdio-1.0
+  main-is:             test.hs
+  hs-source-dirs:      .
   build-depends:       base >=4.11 && <4.12,
                        bytestring,
                        integer-gmp,
