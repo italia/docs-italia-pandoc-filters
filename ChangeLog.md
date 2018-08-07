@@ -1,6 +1,12 @@
 
 # Versioni di `docs-italia-pandoc-filters`
 
+## 0.1.3 -- Agosto 7, 2018
+
+* aggiungo il filtro-references che sostituisce links con references,
+  vedi
+  https://github.com/italia/docs-italia-comandi-conversione/issues/28
+
 ## 0.1.2.2 -- Agosto 6, 2018
 
 * miglioro il filtro didascalia tenendo conto di

@@ -1,0 +1,7 @@
+[
+ Header 2 ("", [], []) [Str "target"],
+ Plain [Link ("", [], []) [Str "whatever"] ("target", "title")],
+ Header 3 ("target3", [], []) [Str "something"],
+ Plain [Link ("", [], []) [Str "whatever"] ("target3", "")],
+ Plain [Link ("", [], []) [Str "whatever"] ("no-target", "")]
+]

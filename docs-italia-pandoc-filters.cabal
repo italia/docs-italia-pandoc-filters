@@ -2,7 +2,7 @@
 -- further documentation, see http://haskell.org/cabal/users-guide/
 
 name:                docs-italia-pandoc-filters
-version:             0.1.2.2
+version:             0.1.3
 synopsis:            Pandoc filters for the Docs Italia project
 -- description:         
 homepage:            https://github.com/italia/docs-italia-pandoc-filters
@@ -28,6 +28,17 @@ test-suite test
                        text,
                        foldl,
                        system-filepath
+  hs-source-dirs:      filters
+  default-language:    Haskell2010
+
+executable filtro-references
+  main-is:             filtro-references.hs
+  build-depends:       base >=4.11 && <4.12,
+                       pandoc,
+                       pandoc-types,
+                       bytestring,
+                       aeson,
+                       integer-gmp
   hs-source-dirs:      filters
   default-language:    Haskell2010
 

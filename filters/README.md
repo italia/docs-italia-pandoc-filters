@@ -60,6 +60,11 @@ corrispondente
 ](https://github.com/italia/docs-italia-comandi-conversione/issues/27)
 per maggiori informazioni
 
+### `filtro-references`
+
+Sostituisce i link con i references, vedi
+https://github.com/italia/docs-italia-comandi-conversione/issues/28
+
 #### Nota sui nomi
 
 Alcuni di questi filtri hanno un nome che comincia con `filtro-`. Questi filtri possono essere installati nel sistema dell'utente ed eseguiti utilizzando il loro nome, per questo aggiungiamo il prefisso `filtro-` in modo da ridurre il rischio di conflitti con altri comandi già esistenti nel sistema.
