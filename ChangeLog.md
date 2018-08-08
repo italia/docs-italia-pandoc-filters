@@ -1,6 +1,10 @@
 
 # Versioni di `docs-italia-pandoc-filters`
 
+## 0.1.3.1 -- Agosto 8, 2018
+
+* molti miglioramenti al filtro references
+
 ## 0.1.3 -- Agosto 7, 2018
 
 * aggiungo il filtro-references che sostituisce links con references,

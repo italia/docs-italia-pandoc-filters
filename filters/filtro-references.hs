@@ -5,40 +5,41 @@ import Text.Pandoc.Walk
 import Text.Pandoc.Definition
 import Data.List
 import Data.Maybe
-import Text.Pandoc.Shared (uniqueIdent)
 import Text.Pandoc.Pretty
-
-{-
-
-use this filter with the `--reference-filter` option
-
--}
-
 
 toReference :: [String] -> Inline -> Inline
 toReference anchors link@(Link _ _ (target, title))
-  | hasAnchor = RawInline (Format "rst") (":ref:`" <> title <> target' <> "`")
+  | hasAnchor = RawInline (Format "rst") (":ref:`" <> title <> target'' <> "`")
   | otherwise = link
-  where target' = if null title
-                  then target
-                  else " " <> "<" <> target <> ">"
-        hasAnchor = elem target anchors
+  where target'' = if null title
+                  then target'
+                  else " " <> "<" <> target' <> ">"
+        hasAnchor = elem target' anchors
+        -- strip the initial `#` from a target
+        target' = tail target
 toReference _ i = i 
 
--- this follows the logic of `blockToRST (Header ...` in the rST
--- writer in calculating a reference target from an header. in the
--- writer autoId anchors get omitted for links that will be eventually
--- parsed, while here we use this function in order to decide whether
--- to replace a link with a ref or not
+{-
+
+for headers without an id we could calculate an autoId from the
+inlines like it's done in `blockToRST (Header ...)` in the rST writer,
+we could get the functions from Text.Pandoc.Shared. the problem is
+detecting a link pointing to the same header
+
+-}
 collectAnchor :: Block -> [String]
-collectAnchor (Header _ (name, _, _) inlines) = [anchor]
-  where autoId = uniqueIdent inlines mempty
-        anchor | null name = autoId
-               | otherwise = name
+collectAnchor (Header _ (name, _, _) _) = [name]
 collectAnchor _ = []
 
-linksToReferences doc@(Pandoc meta blocks) = walk (toReference anchors) doc
-  where anchors :: [String]
+addAnchor b = case collectAnchor b of
+  [target] -> [Para [RawInline (Format "rst") (".. _" <> target <> ":")], b]
+  _ -> [b]
+
+linksToReferences (Pandoc meta blocks) =
+  Pandoc meta ((toReferences . addAnchors) blocks)
+  where toReferences = walk (toReference anchors)
+        addAnchors = query addAnchor
+        anchors :: [String]
         anchors = query collectAnchor blocks
 
 main = toJSONFilter linksToReferences
