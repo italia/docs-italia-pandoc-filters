@@ -31,14 +31,17 @@ collectAnchor :: Block -> [String]
 collectAnchor (Header _ (name, _, _) _) = [name]
 collectAnchor _ = []
 
+addAnchor :: Block -> [Block]
 addAnchor b = case collectAnchor b of
   [target] -> [Para [RawInline (Format "rst") (".. _" <> target <> ":")], b]
   _ -> [b]
 
 linksToReferences (Pandoc meta blocks) =
-  Pandoc meta ((toReferences . addAnchors) blocks)
-  where toReferences = walk (toReference anchors)
-        addAnchors = query addAnchor
+  Pandoc meta (walkBlocks $ walkInlines $ blocks)
+  where walkInlines :: [Block] -> [Block]
+        walkInlines = walk (toReference anchors)
+        walkBlocks :: [Block] -> [Block]
+        walkBlocks = walk (concatMap addAnchor)
         anchors :: [String]
         anchors = query collectAnchor blocks
 
