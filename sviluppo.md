@@ -13,7 +13,17 @@ running:
     $ pandoc in.native --filter ../../../filters/<filter name> -o out.native
 
 This is more than enough in order to test filters, since they can only
-affect the native format. Pandoc's options don't matter
+affect the native format. Most of pandoc's options don't matter.
+
+Some filters might depend on libraries that are provided within the
+stack project's dependencies, thus you want to test them using `stack
+exec`. For example you can run this command in order to compare the
+expected result with the output in `/tmp/out.native`
+
+    $ stack exec -- pandoc --filter filters/filtro-references.hs tests/filtro-references/2/in.native -o /tmp/out.native
+    $ meld tests/filtro-references/2/in.native /tmp/out.native
+
+# Developing `test.hs`
 
 While developing `test.hs` i often did experiments with the
 interpreter. You can do so running:
