@@ -42,6 +42,17 @@ executable filtro-references
   hs-source-dirs:      filters
   default-language:    Haskell2010
 
+executable filtro-merge-codes
+  main-is:             filtro-merge-codes.hs
+  build-depends:       base >=4.11 && <4.12,
+                       pandoc,
+                       pandoc-types,
+                       bytestring,
+                       aeson,
+                       integer-gmp
+  hs-source-dirs:      filters
+  default-language:    Haskell2010
+
 executable filtro-google-docs
   main-is:             filtro-google-docs.hs
   build-depends:       base >=4.11 && <4.12,
