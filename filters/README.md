@@ -86,10 +86,6 @@ Quando si converte da PDF a DOCX a volte i numeri di pagina rimangono
 nel corpo del documento. Questo filtro rimuove i paragrafi che
 contengono solo un numero intero.
 
-### `add-headers.hs`
-
-In alcuni casi il documento da tradurre potrebbe contenere headers in una struttura non gerarchica, che crea errori quando si cerca di convertire l'RST in HTML tramite Sphinx. Usando questo filtro vengono aggiunti gli header dove mancano, con un testo di riempimento (_header added by pandoc_)
-
 ### `link-rfc`
 
 Sostituisce testi come `RFC 1234` con links allo specifico RFC, come
