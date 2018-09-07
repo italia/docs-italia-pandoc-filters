@@ -5,6 +5,30 @@ documenti con Pandoc. I filtri si possono utilizzare usando l'opzione
 informazioni consultate [la documentazione Pandoc sui filtri (in
 inglese)](http://pandoc.org/filters.html)
 
+## Filtri installabili
+
+I nomi di questi filtri cominciano con `filtro-`. Quando si installa
+il software in questo repository usando `stack`, questi filtri possono
+essere eseguiti utilizzando il loro nome, per questo aggiungiamo il
+prefisso `filtro-` in modo da ridurre il rischio di conflitti con
+altri comandi già esistenti nel sistema.
+
+I filtri usati da
+[`converti`](https://github.com/italia/docs-italia-comandi-conversione/blob/master/doc/comandi/converti.md)
+sono [distribuiti in questo
+modo](https://github.com/italia/docs-italia-pandoc-filters/releases).
+
+Per esempio, dopo l'installazione, il `filtro-acronimi` può venire
+usato con pandoc tramite l'opzione `--filter filtro-acronimi`, oppure
+direttamente:
+
+```
+ ~ $ pandoc -t json | filtro-acronimi | pandoc -f json
+ANAS
+<p>Anas</p>
+ ~ $ 
+```
+
 ### `filtro-didascalia.hs`
 
 Permette di convertire correttamente immagini con didascalia. Si
@@ -23,6 +47,27 @@ Un filtro creato per fini dimostrativi, più leggibile degli altri
 ### `filtro-stile-liste.hs`
 
 Fa in modo che le liste vengano scritte mantenendo uno spazio fra ogni elemento. Può essere utile quando si usa pandoc come linter per processare documenti già in formato RST
+
+### `filtro-rimuovi-div.hs`
+
+Elimina gli elementi `div` dal documento, utile quando si usi pandoc
+per convertire un file da HTML ad rST. Utile anche quando pandoc viene
+invocato con l'opzione `-f docx+styles` che introduce molti div
+indicanti lo stile del documento originale `.docx`
+
+### `filtro-references`
+
+Sostituisce i link con i references, vedi
+https://github.com/italia/docs-italia-comandi-conversione/issues/28
+
+### `filtro-merge-code`
+
+Fonde i blocchi codice consecutivi. Vedi https://github.com/italia/docs-italia-comandi-conversione/issues/93
+
+## Altri filtri
+
+Questi filtri sono stati sviluppati per alcuni casi specifici ed usati
+più raramente. Possono comunque tornare utili
 
 ### `bold-headers.hs`
 
@@ -45,13 +90,6 @@ contengono solo un numero intero.
 
 In alcuni casi il documento da tradurre potrebbe contenere headers in una struttura non gerarchica, che crea errori quando si cerca di convertire l'RST in HTML tramite Sphinx. Usando questo filtro vengono aggiunti gli header dove mancano, con un testo di riempimento (_header added by pandoc_)
 
-### `filtro-rimuovi-div.hs`
-
-Elimina gli elementi `div` dal documento, utile quando si usi pandoc
-per convertire un file da HTML ad rST. Utile anche quando pandoc viene
-invocato con l'opzione `-f docx+styles` che introduce molti div
-indicanti lo stile del documento originale `.docx`
-
 ### `link-rfc`
 
 Sostituisce testi come `RFC 1234` con links allo specifico RFC, come
@@ -60,23 +98,4 @@ corrispondente
 ](https://github.com/italia/docs-italia-comandi-conversione/issues/27)
 per maggiori informazioni
 
-### `filtro-references`
-
-Sostituisce i link con i references, vedi
-https://github.com/italia/docs-italia-comandi-conversione/issues/28
-
-### `filtro-merge-code`
-
-Fonde i blocchi codice consecutivi. Vedi https://github.com/italia/docs-italia-comandi-conversione/issues/93
-
-#### Nota sui nomi
-
-Alcuni di questi filtri hanno un nome che comincia con `filtro-`. Questi filtri possono essere installati nel sistema dell'utente ed eseguiti utilizzando il loro nome, per questo aggiungiamo il prefisso `filtro-` in modo da ridurre il rischio di conflitti con altri comandi già esistenti nel sistema.
-
-```
- ~ $ pandoc -t json | filtro-acronimi | pandoc -f json
-ANAS
-<p>Anas</p>
- ~ $ 
-```
 
