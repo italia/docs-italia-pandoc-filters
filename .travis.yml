@@ -14,7 +14,7 @@ before_install:
 
 install:
   - travis_wait stack --no-terminal --skip-ghc-check setup
-  - travis_wait stack --no-terminal --skip-ghc-check test --only-snapshot
+  - travis_wait 30 stack --no-terminal --skip-ghc-check test --only-snapshot
   
 script:
   - stack --no-terminal test
