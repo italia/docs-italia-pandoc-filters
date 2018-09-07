@@ -1,22 +1,38 @@
 
 # Filtri Pandoc per Docs Italia
 
-Questo repository contiene la nostra collezione di filtri pandoc. [Qui](filters/README.md) troverete una breve descrizione per ciascun filtro.
+Questo repository contiene la nostra collezione di filtri
+pandoc. [Qui](filters/README.md) troverete una breve descrizione per
+ciascun filtro.
 
 ## Breve introduzione ai filtri in pandoc
 
-Un filtro pandoc è un file che contiene istruzioni per modificare un documento, come una macro di Office. I filtri possono essere scritti in qualsiasi linguaggio di programmazione ed applicati a documenti scritti in un qualsiasi formato supportato da pandoc come `.rst`, `.docx`, `.odt`, `.html`, `.markdown`.
+Un filtro pandoc è un file che contiene istruzioni per modificare un
+documento, come una macro di Office. I filtri possono essere scritti
+in qualsiasi linguaggio di programmazione ed applicati a documenti
+scritti in un qualsiasi formato supportato da pandoc come `.rst`,
+`.docx`, `.odt`, `.html`, `.markdown`.
 
-Consideriamo il filtro `filtro-acronimi`, che applica i consigli della [Guida al linguaggio della Pubblica Amministrazione](http://guida-linguaggio-pubblica-amministrazione.readthedocs.io/it/latest/le-parole-della-pubblica-amministrazione/a.html) modificando gli acronimi in un documento. Non è necessario essere un programmatore per capire [la logica seguita da questo filtro](filters/filtro-acronimi.hs), che può essere applicato ad un documento così:
+Consideriamo il filtro `filtro-acronimi`, che applica i consigli della
+[Guida al linguaggio della Pubblica
+Amministrazione](http://guida-linguaggio-pubblica-amministrazione.readthedocs.io/it/latest/le-parole-della-pubblica-amministrazione/a.html)
+modificando gli acronimi in un documento. Non è necessario essere un
+programmatore per capire [la logica seguita da questo
+filtro](filters/filtro-acronimi.hs), che può essere applicato ad un
+documento così:
 
-    $ pandoc --filter filters/filtro-acronimi.hs da-filtrare.rst -o filtrato.rst
+    $ pandoc --filter filtro-acronimi da-filtrare.rst -o filtrato.rst
 
-Nel documento `filtrato.rst` gli acronimi per Anas e Anpr saranno tutti corretti. Un filtro è quindi un modo semplice e potente di modificare un documento. Inoltre un filtro è un programma molto portabile, cioè facile da scambiare con i colleghi di altri uffici.
+Nel documento `filtrato.rst` gli acronimi per Anas e Anpr saranno
+tutti corretti. Un filtro è quindi un modo semplice e potente di
+modificare un documento. Inoltre un filtro è un programma molto
+portabile, cioè facile da scambiare con i colleghi di altri uffici.
 
 ## Installazione
 
-Alcuni dei filtri qui contenuti possono essere installati sul vostro
-sistema tramite
+[Alcuni](https://github.com/italia/docs-italia-pandoc-filters/blob/master/filters/README.md#filtri-installabili)
+dei filtri qui contenuti possono essere installati sul vostro sistema
+tramite
 [stack](https://docs.haskellstack.org/en/stable/README/#how-to-install)
 e `git` nei seguenti passi:
 
