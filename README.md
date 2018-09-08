@@ -1,4 +1,6 @@
 
+[![Build Status](https://travis-ci.org/italia/docs-italia-pandoc-filters.svg?branch=master)](https://travis-ci.org/italia/docs-italia-pandoc-filters)
+
 # Filtri Pandoc per Docs Italia
 
 Questo repository contiene la nostra collezione di filtri
