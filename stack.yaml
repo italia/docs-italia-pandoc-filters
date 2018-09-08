@@ -1,5 +1,6 @@
-# personally i find it convenient to keep this resolver updated to pandoc's
-resolver: lts-12.6
+# the italian fork of pandoc is at lts-12.6 but i found some error
+# trying to update this in September
+resolver: lts-12.0
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.
