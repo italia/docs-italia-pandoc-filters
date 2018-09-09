@@ -34,3 +34,10 @@ Keep in mind that most Turtle statements return values that do not
 implement Show. You can see the results using `view`, for instance:
 
     *Main> view (inDir "tests/remove-page-numbers/1" (testAndReport "tests/remove-page-numbers/1"))
+
+# New releases
+
+- update the changelog picking a new version number
+- update the `.cabal` file
+- build and upload the executables on Github as done for previous releases
+
