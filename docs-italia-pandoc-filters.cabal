@@ -2,7 +2,7 @@
 -- further documentation, see http://haskell.org/cabal/users-guide/
 
 name:                docs-italia-pandoc-filters
-version:             0.1.4
+version:             0.2
 synopsis:            Pandoc filters for the Docs Italia project
 -- description:         
 homepage:            https://github.com/italia/docs-italia-pandoc-filters

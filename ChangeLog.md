@@ -1,6 +1,13 @@
 
 # Versioni di `docs-italia-pandoc-filters`
 
+## 0.2 -- Settembre 9, 2018
+
+* rimuovo il filtro `add-headers`
+* reintroduco il `filtro-merge-codes`
+* rimuovo un errore nel `filtro-references` che causava duplicazioni
+* diverse modifiche interne
+
 ## 0.1.4 -- Agosto 13, 2018
 
 * aggiunge il filtro-google-docs per sostituire gli apici
